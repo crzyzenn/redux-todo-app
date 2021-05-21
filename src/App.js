@@ -4,7 +4,7 @@ import "./styles.css";
 import store from "./store";
 import { Provider } from "react-redux";
 import TodoAdd from "./components/TodoAdd";
-import { Snackbar } from "@material-ui/core";
+import { Grid, Snackbar } from "@material-ui/core";
 import TodoList from "./components/TodoList";
 
 // 1st exercise...

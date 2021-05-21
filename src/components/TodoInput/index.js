@@ -4,8 +4,8 @@ import { storeTodoInput } from "../../features/todoSlice";
 
 export default function TodoInput() {
   const state = useSelector((state) => state.todo);
+  console.log(state);
   const dispatch = useDispatch();
-  console.log("From redux store", state);
 
   const handleChange = (e) => {
     let todoInput = e.target.value;
@@ -15,7 +15,7 @@ export default function TodoInput() {
   return (
     <>
       <TextField
-        style={{ display: "block", marginBottom: 10 }}
+        style={{ display: "block", margin: "20px 0 15px 0" }}
         fullWidth
         label="Enter your todo task"
         variant="outlined"

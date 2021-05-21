@@ -67,12 +67,28 @@ export const todoSlice = createSlice({
         if (task.id === taskId) {
           return {
             ...task,
-            status: "completed"
+            status: task.status === "completed" ? "pending" : "completed"
           };
         } else {
           return task;
         }
       });
+    },
+
+    // To delete a todo task
+    deleteTodo: (state, action) => {
+      if (window.confirm("Are you sure you want to delete?")) {
+        // Get the task id to delete
+        let taskId = action.payload;
+        state.tasks = state.tasks.filter((task) => task.id !== taskId);
+        state.snackbar = {
+          open: true,
+          message: "Todo successfully Deleted."
+        };
+      } else {
+        // On cancel
+        console.log("Action cancelled by user.");
+      }
     }
   }
 });
@@ -81,6 +97,7 @@ export const {
   storeTodoInput,
   addTodo,
   closeSnackbar,
-  markAsCompleted
+  markAsCompleted,
+  deleteTodo
 } = todoSlice.actions;
 export default todoSlice.reducer;

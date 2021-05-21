@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo, closeSnackbar } from "../../features/todoSlice";
 
 export default function TodoAdd() {
-  const { todo, snackbar } = useSelector((state) => state.todo);
+  const { snackbar } = useSelector((state) => state.todo);
 
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export default function TodoAdd() {
         Add Todo
       </Button>
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={snackbar.open}
         message={snackbar.message}
         autoHideDuration={1000}

@@ -8,5 +8,15 @@ export default function TodoList() {
     <TodoCard key={id} id={id} status={status} taskName={name} />
   ));
 
-  return <div>{renderTasks}</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        marginTop: 20
+      }}
+    >
+      {renderTasks}
+    </div>
+  );
 }

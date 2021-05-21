@@ -5,9 +5,9 @@ import {
   IconButton,
   Typography
 } from "@material-ui/core";
-import { Done, DeleteOutlined } from "@material-ui/icons";
+import { Done, DeleteOutlined, UndoOutlined } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
-import { markAsCompleted } from "../features/todoSlice";
+import { markAsCompleted, deleteTodo } from "../features/todoSlice";
 
 export default function TodoCard({ id, status, taskName }) {
   const dispatch = useDispatch();
@@ -16,8 +16,12 @@ export default function TodoCard({ id, status, taskName }) {
     dispatch(markAsCompleted(id));
   };
 
+  const handleDeleteClick = () => {
+    dispatch(deleteTodo(id));
+  };
+
   return (
-    <Card>
+    <Card style={{ width: "fit-content", margin: "20px 20px 0 0" }}>
       <CardContent>
         <Typography variant="body1">{taskName}</Typography>
         <Typography variant="subtitle1">{status}</Typography>
@@ -29,16 +33,19 @@ export default function TodoCard({ id, status, taskName }) {
         <IconButton
           onClick={handleDoneClick}
           style={{
-            backgroundColor: "teal",
+            backgroundColor: status === "completed" ? "black" : "teal",
             color: "white"
           }}
         >
-          <Done />
+          {/* Conditional Rendering */}
+          {/* To display separate icons for different task status */}
+          {status === "completed" ? <UndoOutlined /> : <Done />}
         </IconButton>
 
         {/* Delete Button */}
         {/* Task should be removed -> tasks.filter */}
         <IconButton
+          onClick={handleDeleteClick}
           style={{
             backgroundColor: "#eee"
           }}
